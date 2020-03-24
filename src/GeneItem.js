@@ -7,7 +7,7 @@ class GeneItem extends Component {
         var sep  = (gene.otheraliases==="") ? "" : "alias: "
         return (
             <Link to={{
-                    pathname: "/variants",
+                    pathname: `${process.env.PUBLIC_URL}/variants`,
                     state: {
                         geneId: gene.uid
                     }

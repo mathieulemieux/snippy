@@ -12,26 +12,26 @@ class Navbar extends Component {
           <div className="container justify-content-center">
               <ul className="nav navbar-nav flex-fill w-100 flex-nowrap">
                   <li className="nav-item">
-                      <Link to="/" className="nav-link">Accueil</Link>
+                      <Link to={`${process.env.PUBLIC_URL}/`} className="nav-link">Accueil</Link>
                   </li>
                   <li className="nav-item">
-                      <Link to="/search" className="nav-link">Choisir un gène</Link>
+                      <Link to={`${process.env.PUBLIC_URL}/search`} className="nav-link">Choisir un gène</Link>
                   </li>
                   {/* <li className="nav-item">
                       <Link to="/variants" className="nav-link disabled">Visualiser</Link>
                   </li> */}
               </ul>
               <ul className="nav navbar-nav flex-fill justify-content-center">
-                <a href="#" className="navbar-brand">
+                <a href={`${process.env.PUBLIC_URL}/`} className="navbar-brand">
                   <img className="d-inline-block align-top mr-2" src="hipster.png" width="35" height="35" alt="" />
                 </a>
               </ul>
               <ul className="nav navbar-nav flex-fill w-100 justify-content-end">
                   <li className="nav-item">
-                      <a className="nav-link" href="#" data-toggle="modal" data-target="#aide"><small>Aide</small></a>
+                      <a className="nav-link" data-toggle="modal" data-target="#aide"><small>Aide</small></a> {/* href="#" */}
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" href="#" data-toggle="modal" data-target="#apropos"><small>À propos</small></a>
+                      <a className="nav-link" data-toggle="modal" data-target="#apropos"><small>À propos</small></a> {/* href="#" */}
                   </li>
               </ul>
           </div>

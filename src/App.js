@@ -14,12 +14,12 @@ import Footer   from './Footer';
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={'/snippy'}>
         <Navbar />
         <Switch>
-          <Route path="/search"   component={Search} />
-          <Route path="/variants" component={Variants} />
-          <Route path="/"         component={Home} />
+          <Route path={`${process.env.PUBLIC_URL}/search`}   component={Search} />
+          <Route path={`${process.env.PUBLIC_URL}/variants`} component={Variants} />
+          <Route path={`${process.env.PUBLIC_URL}/`}         component={Home} />
         </Switch>
         <Footer />
     </Router>
