@@ -14,7 +14,7 @@ import Footer   from './Footer';
 
 export default function App() {
   return (
-    <Router basename={'/snippy'}>
+    <Router basename={''}>
         <Navbar />
         <Switch>
           <Route path={`${process.env.PUBLIC_URL}/search`}   component={Search} />
