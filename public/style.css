@@ -1,0 +1,142 @@
+
+html,body {
+    height:100%;
+    padding-top:36px; /*height of fixed navbar*/
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+#banner p {
+  font-size: larger;
+}
+
+#banner p:last-of-type {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 125%;
+}
+
+.navbar { 
+  -webkit-transition:padding 0.2s ease;
+  -moz-transition:padding 0.2s ease; 
+  -o-transition:padding 0.2s ease;        
+  transition:padding 0.2s ease;  
+}
+
+.affix {
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
+  -webkit-transition:padding 0.2s linear;
+  -moz-transition:padding 0.2s linear;  
+  -o-transition:padding 0.2s linear;         
+  transition:padding 0.2s linear;  
+}
+
+section {
+  min-height:calc(100% - 70px);
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+section p {
+  font-size: larger;
+}
+
+
+
+
+
+
+
+
+
+/* Web fonts */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i");
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+
+
+/* body { display:flex; flex-direction: column; justify-content:center; align-items:center } */
+br {
+    cursor:              default;
+    -webkit-user-select: none;
+    -moz-user-select:    none;
+    -ms-user-select:     none;
+    user-select:         none;
+}
+
+
+
+/*********************************************************
+                        IDEOGRAM
+ *********************************************************/
+
+/* Chromosome identification */
+.chr_no { font-size: 56px;
+          font-family: Merriweather;
+          cursor: default;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none; }
+
+/* Bands coloration */
+.acen { fill: green } /*  rgb(112,128,144) */
+.gvar { fill: rgb(217,217,217)  }
+.gneg { fill: white }
+.d25  { fill: rgb(217,217,217) }
+.d50  { fill: rgb(153,153,153) }
+.d75  { fill: rgb(102,102,102) }
+.d100 { fill: black }
+
+/* Chromosome contour */
+.chr_region { stroke: black }
+.chr_region_selected { stroke: orange; fill: lightgoldenrodyellow }
+
+
+/*********************************************************
+                        FEATURES
+ *********************************************************/
+
+/* Exons/Introns */
+.exon    { fill: #6DCE58; stroke: #268A8E; rx: 2 }
+.intron  { fill: #229E89; stroke: #268A8E }
+
+
+/*********************************************************
+                        TRACKS
+ *********************************************************/
+
+/* Nav */
+.track_nav          { background: white }
+.track_nav polyline { fill: #C00000 }
+.track_nav line     { stroke-width: 2; stroke: #C00000 }
+
+/* Track columns*/
+.track_column { background: white }
+.track_column_selected { 
+    background:   pink;
+    outline:        1px solid red;
+    outline-offset: -1px;
+    font-weight: bold;
+}
+
+/* Information content */
+.i_content { stroke-width: 1; stroke: white }
+.i_exon    { fill: #6DCE58 }
+.i_intron  { fill: #229E89 }
+
+/* Nucleotides sequences */
+.nc    { font-size: 80%;
+         font-family: Roboto;
+         cursor: default;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none; }
+.ref   { fill: darkgray }
+.v_syn { fill: blue }
+.v_mis { fill: orange }
+.v_non { fill: red }
+.pop   { fill: black; font-weight: bold }
