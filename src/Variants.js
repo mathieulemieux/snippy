@@ -11,29 +11,31 @@ class Variants extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      geneId:   this.props.location.state.geneId,//'xyz', //props.geneId,
+      apiUrl  : 'https://snippy-restapi.herokuapp.com',
+      geneId  : this.props.location.state.geneId,
       geneInfo: null
     };
 }
 
   // Event handlers
   componentDidMount = (event) => {
-    this.snippyApi();
+    this.getGeneInfo();
     // this.setState({geneInfo: 'allo'}); //ajax...
 }
 
   // Details du gene sur l'API Flask de l'application
-  snippyApi() {
-    var gene = this.state.geneId
+  getGeneInfo() {
+    var apiUrl = this.state.apiUrl
+    var gene   = this.state.geneId
     $.ajax({
-        url     : 'http://127.0.0.1:5000/features',
+        url     : `${apiUrl}/features`,
         data    : {'gene': gene},
         type    : 'POST',
         dataType: 'json',
         error   : function() {var a = 1}, //dummy alert(gene),//
-        success : data => {this.setState({geneInfo: data})}
+        success : data => {this.setState({geneInfo: data}, alert(data[data.length-1].bp_stop))}
     });
-    // alert(this.state.geneInfo)
+    
 }
 
   // Rendu
