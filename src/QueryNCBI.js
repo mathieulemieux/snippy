@@ -14,7 +14,7 @@ class QueryNCBI extends Component {
             exemples   : ["DMD*", "Dystro*", "1756"],
             keyword    : "",
             idList     : null,
-            geneInfos  : null,
+            geneInfo   : null,
             msgError   : "Une erreur s'est produite avec le serveur. Veuillez réessayer."
         };
     }
@@ -63,13 +63,13 @@ class QueryNCBI extends Component {
             type    : 'POST',
             dataType: 'json',
             error   : function() {var a = 1}, //dummy
-            success : data => {this.setState({geneInfos: data.result.uids.map(uid => data.result[uid])})}
+            success : data => {this.setState({geneInfo: data.result.uids.map(uid => data.result[uid])})}
         });    
     }
 
     // Rendu HMTL
     geneList() {
-        return this.state.geneInfos.map(g => <GeneItem key={g.uid} gene={g} />)
+        return this.state.geneInfo.map(g => <GeneItem key={g.uid} gene={g} />)
     }
     render() {
         return (
@@ -89,7 +89,7 @@ class QueryNCBI extends Component {
                         </small>
                     </div>
                     {/* Resultats */ }
-                    {this.state.geneInfos &&
+                    {this.state.geneInfo &&
                         <div id="results">
                             <h6 className="border-bottom border-gray mt-5 mb-4 pb-2 mb-0">Résultats</h6>
                             <div id="gene_list">{this.geneList()}</div>
