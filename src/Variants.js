@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import $        from 'jquery';
 import Ideogram from './Ideogram.js';
-// import Features from './Features.js';
-// import Tracks   from './Tracks.js';
+import Features from './Features.js';
+import Tracks   from './Tracks.js';
 
 
 class Variants extends Component {
@@ -11,7 +11,7 @@ class Variants extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiUrl       : 'https://snippy-restapi.herokuapp.com',
+      apiUrl       : 'https://snippy-snp.herokuapp.com', //'https://snippy-restapi.herokuapp.com',
       // geneInfo     : this.props.geneInfo,
       geneId       : this.props.location.state.geneId, // En provenance d'un 'link' dans GeneItem.js?
       geneData     : "",
@@ -30,38 +30,41 @@ class Variants extends Component {
     var apiUrl = this.state.apiUrl
     var geneId = this.state.geneId
     $.ajax({
-        url     : `${apiUrl}/gene`,
-        data    : {'id': geneId},
+        url     : `${apiUrl}/sequence`, //`${apiUrl}/exons`,
+        data    : {'gene': '266'}, //{'gene': geneId},
         type    : 'POST',
-        dataType: 'json',
+        // dataType: 'json',
         error   : function() {var a = 1}, //dummy alert(gene),//
-        success : data => {this.setState({geneData: data})} //, alert(data[data.length-1].bp_stop)
+        success : data => {this.setState({
+          geneData: data
+        })} //, alert(data[data.length-1].bp_stop)
     });
   }
 
   // Rendu
   render() {
     return (
-      <div>
+      <div>{/* this.state.geneData[0][1]*/}
         <Ideogram
           ideogramData={this.state.ideogramData}
           res={400}
           width={375}
           height={36}
         />
-        {/* <Features /> */}
-        {/* <Tracks   /> */}
+        <Features />
+        <Tracks   />
       </div>    
     )
   }
 
 };
 
-
+// Pourquoi déja?
 const x = state => {
   return {
 
   }
 }
 
-export default connect()(Variants)
+// export default connect()(Variants)
+export default Variants

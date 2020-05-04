@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as d3 from 'd3'
 
 class Ideogram extends Component {
 
@@ -6,16 +7,12 @@ class Ideogram extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
-  //     res      : "400",
-  //     region   : this.props.region,
-  //     chrName  : this.props.chrName,
-  //     geneName : this.props.geneName,
-  //     geneDesc : this.props.geneDesc,
-  //     ideogram : this.props.ideogram
+  //     res      : this.props.res,
+  //     width    : this.props.width,
+  //     height   : this.props.height,
+  //     geneName : this.props.geneName
   //   };
   // }
-
-
 
   // Rendu avec D3: le contenu du svg
   renderIdeogram(props) {
@@ -76,15 +73,13 @@ class Ideogram extends Component {
   // Rendu initial avec React: juste le svg sans contenu
   render() {
     return (
-      // <div id="ideogram">Ideogram</div>
       <svg
-        width={this.props.width}
-        height={this.props.height}
         ref={node => this.node = node}
-      >
+        width={this.props.width}
+        height={this.props.height}>
       </svg>
     )
   }
 };
 
-// export default Ideogram;
+export default Ideogram;

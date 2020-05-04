@@ -1,0 +1,27 @@
+
+
+** Liens avec l'API à Mat
+** Brush entre features et tracks
+
+
+- Homepage: Valider le texte du Jumbotron
+- Homepage: Réécrire les sections... texte/image. Faire en sorte que ca tienne sur une page (faire un jumbotron slider?)
+- Homepage: Comment ça marche: décider on fait quoi avec ca; développer!
+- Homepage: Explorer: créer le lien
+
+- Navbar: Logo
+- Navbar: Rédiger Aide
+- Navbar: Rédiger À propos
+
+- Footer: Ajouter un pied de page?
+
+- Search: Choisir des exemples pour chr1
+- Search: Limiter la recherche au Chr1
+- Search: Vérifier si le gene est dispo sur le site avant d'activer le lien?
+
+- Variants: Tout reste à faire...
+
+- AJAX -> Réécrire selon nouvelle nomenclature
+- AJAX -> Gérer les erreurs...
+
+

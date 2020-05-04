@@ -22,7 +22,7 @@ p {
   -webkit-transition:padding 0.2s ease;
   -moz-transition:padding 0.2s ease; 
   -o-transition:padding 0.2s ease;        
-  transition:padding 0.2s ease;  
+  transition:padding 0.2s ease;
 }
 
 .affix {

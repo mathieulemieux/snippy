@@ -11,11 +11,19 @@ import Variants from './Variants';
 import Navbar   from './Navbar';
 import Footer   from './Footer';
 
+// APP STRUCTURE
+// 
+// TOP    -> Navbar                               (Navbar.js)
+// MIDDLE -> Switch between : a) Homepage         (Home.js)  
+//                            b) Search gene      (Search.js)
+//                            c) Variants display (Variants.js)
+// BOTTOM -> Footer                               (Footer.js)
+// 
 
 export default function App() {
   return (
     <Router basename={''}>
-        <Navbar />
+        <Navbar />  
         <Switch>
           <Route path={`${process.env.PUBLIC_URL}/search`}   component={Search} />
           <Route path={`${process.env.PUBLIC_URL}/variants`} component={Variants} />
