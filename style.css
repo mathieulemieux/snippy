@@ -107,6 +107,8 @@ br {
 .exon    { fill: #6DCE58; stroke: #268A8E; rx: 2 }
 .intron  { fill: #229E89; stroke: #268A8E }
 
+.gene_line line {stroke-width: 4; stroke: #fcc000}
+
 
 /*********************************************************
                         TRACKS
