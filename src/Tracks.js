@@ -17,12 +17,15 @@ class Tracks extends Component {
       pos_nb           : 62,         // Nb de positions qui sont affichées à la fois
       pos_width        : 11,         // Largeur en pixels de chaque position
       // Tracks
-      info_height      : 40,         // Nb de pixels en hauteur pour la track Info
+      info_height      : 80,         // Nb de pixels en hauteur pour la track Info
       nc_height        : 15,         // Nb de pixels en hauteur pour l'affichage de chaque nucléotide?
-      tracks_height    : 40 + 15*5,  // Hauteur totale pour les 2 tracks combinées - Quickfix (this.state.info_height + this.state.nc_height*5)
+      tracks_height    : 80 + 15*5,  // Hauteur totale pour les 2 tracks combinées - Quickfix (this.state.info_height + this.state.nc_height*5)
       // Navigation
       track_nav_width  : 45,         // Largeur, en pixels, des flèches rouges à gauche et à droite?
-      track_nav_height : 40 + 15*5   // Hauteur, en pixels, des flèches rouges à gauche et à droite? - Quickfix (this.statetracks_height)
+      track_nav_height : 80 + 15*5,   // Hauteur, en pixels, des flèches rouges à gauche et à droite? - Quickfix (this.statetracks_height)
+      //
+      my_pos: "",
+      sequenceData:{}
     };
   }
 
@@ -84,7 +87,7 @@ class Tracks extends Component {
         .attr('y2', track_nav_height)
 
     // Event listeners
-    const incr = 10
+    const incr = this.state.pos_nb //10
     d3.select('#nav_left' ).on("click", f => this.setState((prevState) => ({pos_start: prevState.pos_start -incr})))
     d3.select('#nav_right').on("click", f => this.setState((prevState) => ({pos_start: prevState.pos_start +incr})))
 
@@ -108,13 +111,13 @@ class Tracks extends Component {
       var pos_nb    = this.state.pos_nb
       var pos_stop  = pos_start + pos_nb
       var data      = this.props.sequenceData
+      // this.setState({sequenceData: data})
       // if ((pos_start + incr >= 0 ) & ( pos_start + pos_nb + incr <= data.length )){
+      if (pos_start<0) { this.setState({pos_start: 0}) }
+      if (pos_start>(data.length-pos_nb)) { this.setState({pos_start: data.length-pos_nb}) }
+      var pos_start = this.state.pos_start
       if ((pos_start >= 0 ) & ( pos_start + pos_nb <= data.length )){
-        // alert('allo')
-        // pos_start    = pos_start + incr
-        // var pos_stop = pos_start + pos_nb
         var myData   = data.slice(pos_start, pos_stop); // Slicing par index, pas les vraies positions des nucléotides
-        // this.setState({pos_start : pos_start})
         this.updateTracks(myData);
       } //Fin if #2
     } //Fin if #1
@@ -151,15 +154,16 @@ class Tracks extends Component {
         .attr('width',  pos_width)
         .attr('height', tracks_height)
         .attr('class',  'track_column')
-        .attr('data-toggle', 'tooltip')
-        .attr('data-placement', 'top')
-        .attr('title', 'test') //d => d.pos
+        .attr('data-toggle', 'modal')
+        .attr('data-target', '#exampleModalXX')
+        // .attr('pop', d => d.pop)
+        .attr('xyz', 'allo')
 
     // 4- Append (each track: 1 content info 'rect'; 4+1 nucleotides 'text')
     enter.append('rect')
-        .attr('y',      d => info_height - (d.info*(info_height/2)))
+        .attr('y',      d => info_height - (d.info*(info_height/10))) // '/2'
         .attr('width',  pos_width)
-        .attr('height', d => d.info*(info_height/2))
+        .attr('height', d => d.info*(info_height/10)) // '/2'
         .attr('class',  function(d) {
                 if   (d.exon==='true') { return 'i_content i_exon' }
                 else                  { return 'i_content i_intron' }
@@ -177,7 +181,7 @@ class Tracks extends Component {
                 else if (d.alt_i[i]==="2") { return 'nc v_mis' }
                 else if (d.alt_i[i]==="3") { return 'nc v_non' }
                 else if (d.alt_i[i]==="4") { return 'nc v_non' }
-                else                      { return 'nc' }
+                else                       { return 'nc' }
             })
             
     }
@@ -199,8 +203,21 @@ class Tracks extends Component {
     d3.selectAll('.track_column').on("mouseover", function() {
         d3.select(this).classed('track_column_selected', true)
     })
-    d3.selectAll('.track_column').on("click", function() {
-        alert(this.id)
+    d3.selectAll('.track_column').on("click", function(data) {
+      
+        if (data.pop.length>0) {
+          alert(`
+          Position : ${this.id}\r
+          Férquences alléliques ( A | C | G | T ) :\r
+          AFR: ${data.pop[0][0]} ${data.pop[0][1]} ${data.pop[0][2]} ${data.pop[0][3]}\r
+          AMR: ${data.pop[1][0]} ${data.pop[1][1]} ${data.pop[1][2]} ${data.pop[1][3]}\r
+          EAS: ${data.pop[2][0]} ${data.pop[2][1]} ${data.pop[2][2]} ${data.pop[2][3]}\r
+          EUR: ${data.pop[3][0]} ${data.pop[3][1]} ${data.pop[3][2]} ${data.pop[3][3]}\r
+          ASA: ${data.pop[4][0]} ${data.pop[4][1]} ${data.pop[4][2]} ${data.pop[4][3]}
+        `)
+        } else { alert(`Position : ${this.id}\r`) }
+
+        
     })
     d3.selectAll('.track_column').on("mouseleave", function() {
         d3.select(this).classed('track_column_selected', false)
@@ -211,7 +228,27 @@ class Tracks extends Component {
 
   render() {
     return (
-      <div id='tracks'></div>
+      <div id='tracks'>
+        {/* Modal */}
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{this.state.my_pos}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 };

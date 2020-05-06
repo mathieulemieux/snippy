@@ -117,6 +117,7 @@ class Variants extends Component {
       var alt_i = "0" // commence toujours par 0=référence
       let variant = sequenceData.var.find(obj => {return obj.pos === pos})
       var pop = []
+      var info = 1
       if (variant) {  // Si variant à la position correspondante
 
         // alt et alt_i
@@ -215,14 +216,21 @@ class Variants extends Component {
           pop[0][4]+pop[1][4]+pop[2][4]+pop[3][4]+pop[4][4]
         ])
 
+        // Contenu en information - Diversité de Simpson
+        var calcul_info = []
+        calcul_info.push( Math.pow((pop[5][0]/(pop[5][4]*2)), 2) )
+        // console.log(`pop[5][0]/pop[5][4] : ${pop[5][0]/pop[5][4]}`)
+        calcul_info.push( Math.pow(pop[5][1]/(pop[5][4]*2), 2) )
+        calcul_info.push( Math.pow(pop[5][2]/(pop[5][4]*2), 2) )
+        calcul_info.push( Math.pow(pop[5][3]/(pop[5][4]*2), 2) )
+        info = 1 / calcul_info.reduce((a, b) => a + b, 0)
+
       }
 
       // exon
       if (car === car.toUpperCase()) {var exon = "false"}
       else                           {var exon = "true"}
 
-      // info
-      const info = "1.5"
 
       // Objet final
       const obj = {
@@ -237,8 +245,8 @@ class Variants extends Component {
 
     }
 
-    // console.log('----------------')
-    // console.log(sequenceData)
+    console.log('----------------')
+    console.log(sequenceData)
     console.log('----------------')
     console.log(data)
     console.log('----------------')
@@ -308,7 +316,8 @@ class Variants extends Component {
             <div className='row'>
               <div className='col-3'>
                 <div className='text-right noselect'>
-                  <p className='mt-2'>Contenu en information</p>
+                  <br/><br/>
+                  <p className='mt-1'>Diversité allèlique (Simpson)</p>
                   <p>Séquence de référence</p>
                   <p>Polymorphismes</p>
                 </div>
