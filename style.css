@@ -45,7 +45,15 @@ section p {
 }
 
 
-
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
 
 
 
@@ -73,13 +81,9 @@ br {
  *********************************************************/
 
 /* Chromosome identification */
-.chr_no { font-size: 56px;
+.chr_no { font-size: 24px;
           font-family: Merriweather;
-          cursor: default;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none; }
+          cursor: default; }
 
 /* Bands coloration */
 .acen { fill: green } /*  rgb(112,128,144) */
@@ -135,8 +139,10 @@ br {
          -moz-user-select: none;
          -ms-user-select: none;
          user-select: none; }
-.ref   { fill: darkgray }
-.v_syn { fill: blue }
-.v_mis { fill: orange }
-.v_non { fill: red }
-.pop   { fill: black; font-weight: bold }
+.ref   { fill: darkgray; color: darkgray }
+.v_syn { fill: blue; color: blue }
+.v_mis { fill: orange; color: orange }
+.v_non { fill: red; color: red }
+.pop   { fill: black; font-weight: bold; color: black }
+.v_white { color: white }
+
