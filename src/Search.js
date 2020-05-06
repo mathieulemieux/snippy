@@ -48,7 +48,12 @@ class Search extends Component {
             type    : 'POST',
             dataType: 'json',
             error   : function() {var a = 1}, //dummy
-            success : data => {this.setState({idList: data.esearchresult.idlist}, () => {this.esummary()})} // Recherche no2
+            success : data => {
+                this.setState({idList: data.esearchresult.idlist}, () => {
+                    // if (data.esearchresult.count!=="0"){
+                        this.esummary() // Recherche no2
+                    // }
+                })}
         });
     }
     esummary() {
@@ -63,13 +68,37 @@ class Search extends Component {
             type    : 'POST',
             dataType: 'json',
             error   : function() {var a = 1}, //dummy
-            success : data => {this.setState({geneInfo: data.result.uids.map(uid => data.result[uid])})}
+            success : data => {
+                if (data.result) {
+                    // console.log('yes')
+                    this.setState({geneInfo: data.result.uids.map(uid => data.result[uid])})
+                }else{
+                    // console.log('no')
+                    this.setState({geneInfo: null})
+                }
+                // console.log(`data: ${data}`)
+                // console.log(`data: ${data.result}`)
+                // console.log(`data: ${data.result.uids}`)
+                // this.setState({geneInfo: data.result.uids.map(uid => data.result[uid])})
+                // console.log(`geneInfo: ${this.state.geneInfo}`)
+            }
         });    
     }
 
     // Rendu HMTL
     geneList() {
-        return this.state.geneInfo.map(g => <GeneItem key={g.uid} gene={g} />)
+        // return this.state.geneInfo.map(g => <GeneItem key={g.uid} gene={g} />)
+        if (this.state.geneInfo) { //if (this.state.idList.length!==0) {
+            // console.log('-----')
+            // console.log(this.state.geneInfo)
+            console.log('yes')
+            return this.state.geneInfo.map(g => <GeneItem key={g.uid} gene={g} />)
+        }else{
+            // alert('Aucun résultats disponibles pour cette recherche')
+            console.log('no')
+            return 'Aucun résultats'
+        }
+        
     }
     render() {
         return (
@@ -91,12 +120,12 @@ class Search extends Component {
                     </div>
                     
                     {/* Resultats */ }
-                    {this.state.geneInfo &&
+                    {/* {this.state.geneInfo && */}
                         <div id="results">
                             <h6 className="border-bottom border-gray mt-5 mb-4 pb-2 mb-0">Résultats</h6>
                             <div id="gene_list">{this.geneList()}</div>
                         </div>
-                    }
+                    {/* } */}
                     
                 </div>
             </div>

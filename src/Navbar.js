@@ -13,10 +13,10 @@ class Navbar extends Component {
           <div className="container justify-content-center">
               {/* // <!-- Left section ('Accueil' & 'Choisir un gène') --> */}
               <ul className="nav navbar-nav flex-fill w-100 flex-nowrap">
-                  <li className="nav-item">
+                  <li className="nav-item noselect">
                       <Link to={`${process.env.PUBLIC_URL}/`} className="nav-link">Accueil</Link>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item noselect">
                       <Link to={`${process.env.PUBLIC_URL}/search`} className="nav-link">Commencer l'exploration!</Link>
                   </li>
                   {/* <li className="nav-item">
@@ -25,17 +25,17 @@ class Navbar extends Component {
               </ul>
               {/* // <!-- Mid section (Logo) --> */}
               <ul className="nav navbar-nav flex-fill justify-content-center">
-                <a href={`${process.env.PUBLIC_URL}/`} className="navbar-brand">
+                <a href={`${process.env.PUBLIC_URL}/`} className="navbar-brand noselect">
                   <img className="d-inline-block align-top mr-2" src="hipster.png" width="35" height="35" alt="" />
                 </a>
               </ul>
               {/* // <!-- Right section ('Aide' & 'À propos') --> */}
               <ul className="nav navbar-nav flex-fill w-100 justify-content-end">
                   <li className="nav-item">
-                      <a className="nav-link" data-toggle="modal" data-target="#aide"><small>Aide</small></a> {/* href="#" */}
+                      <a className="nav-link noselect" data-toggle="modal" data-target="#aide"><small>Aide</small></a> {/* href="#" */}
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" data-toggle="modal" data-target="#apropos"><small>À propos</small></a> {/* href="#" */}
+                      <a className="nav-link noselect" data-toggle="modal" data-target="#apropos"><small>À propos</small></a> {/* href="#" */}
                   </li>
               </ul>
           </div>
