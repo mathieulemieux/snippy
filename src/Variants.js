@@ -279,10 +279,13 @@ class Variants extends Component {
         <div className='container'>
 
           <div className='shadow bg-white rounded mt-4 p-4'>
-            <div className='row align-items-end mb-3 noselect'>
+            <div id='gene_line' className='row align-items-end mb-3 noselect'>
               <div className='col-2 ml-2 text-left'>
                 <h3>Gène</h3>
               </div>
+
+              {/* <div id='gene_line'></div> */}
+              
               <div className='col-9 ml-4 text-right'>
                 <p><strong>{this.props.location.state.name}</strong> (id. {this.props.location.state.geneId})</p>
                 <p>{this.props.location.state.nomenclaturename}</p>

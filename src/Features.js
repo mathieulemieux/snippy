@@ -51,9 +51,28 @@ class Features extends Component {
   } //Fin renderFeatures
 
   // React's Lifecycle
-  // componentDidMount(){
-  //   this.setIdentification(this.props)
-  // }
+  componentDidMount(){
+
+    var gene_line = d3.select('#gene_line').append('svg')
+        .attr('id',     'gene_line_svg')
+        .attr('width',  1040)
+        .attr('height', 30)
+        .attr('class',  'gene_line')
+    // gene_line.append('polyline')
+    //     .attr('id',     'gene_line')
+    //     .attr('points', `${track_nav_width/3}     ${track_nav_height/2},
+    //                     ${(track_nav_width/3)*2} ${(track_nav_height/2)+15},
+    //                     ${(track_nav_width/3)*2} ${(track_nav_height/2)-15}`)
+    gene_line.append('line')
+        .attr('x1', 20)
+        .attr('y1', 5)
+        .attr('x2', 1020)
+        .attr('y2', 5)
+
+
+
+    // this.setIdentification(this.props)
+  }
   componentDidUpdate(){
     this.renderFeatures(this.props)
   }
